@@ -1,37 +1,28 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React from 'react';
-import {View, StyleSheet, Pressable, Text} from 'react-native';
-import buildNotification from './src/utils/notifications/NotificationBuilder';
-import sendNotification from './src/utils/notifications/SendNotification';
+import {NavigationContainer} from '@react-navigation/native';
+import {Home} from './src/screens/Home/Home';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Notifications} from './src/screens/Notifications/Notifications';
+import {TabBarIcon} from './src/components/TabBarIcon/TabBarIcon';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#aaaa',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  button: {
-    backgroundColor: '#42d1fc',
-    padding: 10,
-    borderRadius: 10,
-  },
-  text: {
-    color: '#fff',
-    fontSize: 20,
-  },
-});
+const Tab = createBottomTabNavigator();
 
 const App = (): JSX.Element => {
   return (
-    <View style={styles.container}>
-      <Pressable
-        style={styles.button}
-        onPress={sendNotification(
-          buildNotification({title: 'Test', body: 'Test'}),
-        )}>
-        <Text style={styles.text}>Send Notification</Text>
-      </Pressable>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({route}: any) => ({
+          tabBarIcon: ({color, size}) => (
+            <TabBarIcon name={route.name} size={size} color={color} />
+          ),
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}>
+        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen name="Notifications" component={Notifications} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 };
 

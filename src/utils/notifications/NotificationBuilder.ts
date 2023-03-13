@@ -7,4 +7,4 @@ const buildNotification = (data: any) => {
   return notification;
 };
 
-export default buildNotification;
+export {buildNotification};

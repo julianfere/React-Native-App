@@ -23,4 +23,4 @@ const sendNotification = (notification: any) => {
   };
 };
 
-export default sendNotification;
+export {sendNotification};
