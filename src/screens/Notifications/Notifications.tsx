@@ -27,7 +27,10 @@ const Notifications = () => {
       <Pressable
         style={styles.button}
         onPress={sendNotification(
-          buildNotification({title: 'Test', body: 'Test'}),
+          buildNotification({
+            title: 'Test Notification',
+            body: 'Local notification goes BRRRRRRRRRRRRRRRRRR',
+          }),
         )}>
         <Text style={styles.text}>Send Notification</Text>
       </Pressable>
